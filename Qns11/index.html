@@ -1,0 +1,25 @@
+<!-- // With Promise -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Start task with Promise</title>
+  </head>
+  <body>
+    <button onclick="startTask()">Start</button>
+    <p id="message"></p>
+    <script>
+      function startTask() {
+        const message = document.getElementById("message");
+        message.textContent = "Processing";
+
+        new Promise(function (resolve) {
+          setTimeout(() => {
+            resolve("Task Complete");
+          }, 2000);
+        }).then(function (status) {
+          message.textContent = status;
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fetch Tasks</title>
+  </head>
+  <body>
+    <h2>Task List</h2>
+    <p id="status">Loading...</p>
+    <ul id="taskList"></ul>
+
+    <script>
+      const status = document.getElementById("status");
+      const taskList = document.getElementById("taskList");
+
+      fetch("https://jsonplaceholder.typicode.com/todos?_limit=5") // Get 5 tasks
+        .then((response) => response.json())
+        .then((data) => {
+          status.textContent = ""; // Remove "Loading..."
+
+          data.forEach((task) => {
+            const li = document.createElement("li");
+            li.textContent = task.title;
+            taskList.appendChild(li);
+          });
+        })
+        .catch((error) => {
+          status.textContent = "Failed to load tasks.";
+          console.error("Error:", error);
+        });
+    </script>
+  </body>
+</html>
